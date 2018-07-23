@@ -11,5 +11,6 @@ class Algorithm(ut.TestCase):
 
         index = binary_search(sorted_list, 7)
         self.assertEqual(3, index)
+        
         index = binary_search(sorted_list, 10)
         self.assertEqual(None, index)
