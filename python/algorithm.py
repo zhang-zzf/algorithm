@@ -118,3 +118,37 @@ def recursion_max_value(lst=[], start=0, end=0):
         return guess
     else:
         return lst[start]
+
+def recursion_quick_sort(lst, start, end):
+    """
+    快速排序
+    """
+    low = start
+    high = end - 1
+    # 基线条件
+    if (low >= high):
+        return
+
+    index = int((start + high) / 2)
+    index_val = lst[index]
+    index_low = low
+    index_high = high
+    while (index_low < index or index_high > index):
+        while (index_low < index):
+            if (lst[index_low] > index_val):
+                _swap(lst, index_low, index)
+                index = index_low
+                break
+            else:
+                index_low += 1
+        while (index_high > index):
+            if (lst[index_high] < index_val):
+                _swap(lst, index_high, index)
+                index = index_high
+                break
+            else:
+                index_high -= 1
+    
+    recursion_quick_sort(lst, start, index)
+    recursion_quick_sort(lst, index + 1, end)
+            

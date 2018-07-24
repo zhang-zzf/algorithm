@@ -7,6 +7,7 @@ from algorithm import factorial2
 from algorithm import recursion_sum
 from algorithm import recursion_sum2
 from algorithm import recursion_max_value
+from algorithm import recursion_quick_sort
 
 class AlgorithmTestCase(ut.TestCase):
 
@@ -75,3 +76,9 @@ class AlgorithmTestCase(ut.TestCase):
 
         self.assertEqual(None, recursion_binary_search(sorted_list, -1, 0, len(sorted_list)))
         self.assertEqual(None, recursion_binary_search(sorted_list, 10, 0, len(sorted_list)))
+
+    def test_recursion_quick_sort(self):
+        lst = [1, 3, 11, 8, -1, 100, -50, 99, 0, 33]
+        sorted_lst = [-50, -1, 0, 1, 3, 8, 11, 33, 99, 100]
+        recursion_quick_sort(lst, 0, len(lst))
+        self.assertListEqual(sorted_lst,lst)
