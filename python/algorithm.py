@@ -1,4 +1,4 @@
-
+from stack import Stack
 def binary_search(sorted_list, value):
     """
         二分查找/折半查找
@@ -128,27 +128,44 @@ def recursion_quick_sort(lst, start, end):
     # 基线条件
     if (low >= high):
         return
-
-    index = int((start + high) / 2)
-    index_val = lst[index]
-    index_low = low
-    index_high = high
-    while (index_low < index or index_high > index):
-        while (index_low < index):
-            if (lst[index_low] > index_val):
-                _swap(lst, index_low, index)
-                index = index_low
-                break
-            else:
-                index_low += 1
-        while (index_high > index):
-            if (lst[index_high] < index_val):
-                _swap(lst, index_high, index)
-                index = index_high
-                break
-            else:
-                index_high -= 1
-    
+    index = _partSort(lst, low, high) 
     recursion_quick_sort(lst, start, index)
     recursion_quick_sort(lst, index + 1, end)
-            
+
+def quick_sort(lst, start, end):
+    """
+    快速排序
+    """
+    low = start
+    high = end - 1
+    if (low >= high):
+        return None
+    stack = Stack()
+    stack.push(low)
+    stack.push(high)
+
+    while (stack.size() > 0):
+        high = stack.poll()
+        low = stack.poll()
+        index = _partSort(lst, low, high)
+        if (low < index - 1):
+            stack.push(low)
+            stack.push(index - 1)
+        if (index + 1 < high):
+            stack.push(index + 1)
+            stack.push(high)
+
+def _partSort(lst, left, right):
+    """
+    分区排序，快速排序的核心
+    """
+    pivot_index = right
+    pivot = lst[pivot_index]
+    while (left < right):
+        while (left < right and lst[left] <= pivot):
+            left += 1
+        while (left < right and lst[right] >= pivot):
+            right -= 1
+        _swap(lst, left, right)
+    _swap(lst, left, pivot_index)
+    return left       
