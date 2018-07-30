@@ -66,7 +66,7 @@ public class Algorithm {
      */
     public static void quickSort(int[] array, int start, int end) {
         Deque<Integer> stack = new LinkedList<>();
-        int low = start, high = end -1;
+        int low = start, high = end - 1;
         stack.push(high);
         stack.push(low);
         while (stack.size() > 0) {
@@ -74,7 +74,7 @@ public class Algorithm {
             high = stack.poll();
             int index = _partSort2(array, low, high);
             if (low < index - 1) {
-                stack.push(index -1);
+                stack.push(index - 1);
                 stack.push(low);
             }
             if (index + 1 < high) {
@@ -167,7 +167,6 @@ public class Algorithm {
         return left;
     }
 
-
     private static void _swap(int[] list, int index1, int index2) {
         if (index1 == index2) {
             return;
@@ -176,4 +175,6 @@ public class Algorithm {
         list[index1] = list[index2];
         list[index2] = tmp;
     }
+
+
 }

@@ -1,4 +1,11 @@
+import graph.bfs.BreadthFirstSearchAlgorithm;
+import graph.dijkstra.feng.DijkstraAlgorithm;
+import graph.dijkstra.feng.Graph;
+import graph.dijkstra.feng.Vertex;
 import org.junit.Test;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -47,5 +54,38 @@ public class AlgorithmTest {
         assertEquals(gcd, Algorithm.gcd(8888, 100));
     }
 
+    @Test
+    public void dijkstraGraph() {
+        Graph g = Graph.generateGraph();
+        List<Vertex> minWeightVertexs = new LinkedList<>();
+        minWeightVertexs.add(Vertex.builder().name("start").build());
+        minWeightVertexs.add(Vertex.builder().name("B").build());
+        minWeightVertexs.add(Vertex.builder().name("C").build());
+        minWeightVertexs.add(Vertex.builder().name("stop").build());
+        List<Vertex> vertices = DijkstraAlgorithm.dijkstraGraph(g, new Vertex("start"), new Vertex("stop"));
+        assertArrayEquals(minWeightVertexs.toArray(), vertices.toArray());
+    }
 
+
+    @Test
+    public void dijkstraGraph2() {
+        graph.dijkstra.better.Graph g = graph.dijkstra.better.Graph.generateGraph();
+        assertEquals(4, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "e"));
+        assertEquals(1, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "b"));
+        assertEquals(10, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "c"));
+        assertEquals(40, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "d"));
+        assertEquals(50, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "e"));
+    }
+
+    @Test
+    public void bfs() {
+        String[] bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "peggy");
+        assertEquals(3, bfs.length);
+
+        bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "thom");
+        assertEquals(3, bfs.length);
+
+        bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "dddd");
+        assertEquals(0, bfs.length);
+    }
 }
