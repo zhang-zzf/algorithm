@@ -9,8 +9,42 @@ from algorithm import recursion_sum2
 from algorithm import recursion_max_value
 from algorithm import recursion_quick_sort
 from algorithm import quick_sort
+from algorithm import breadth_first_search
+from algorithm import breadth_first_search_with_path
 
 class AlgorithmTestCase(ut.TestCase):
+
+    def test_breadth_first_search_with_path(self):
+        graph = self._generateBFSGraph()
+        path = breadth_first_search_with_path(graph, "me", "peggy")
+        print(path)
+        self.assertEquals(3, len(path))
+
+        path = breadth_first_search_with_path(graph, "me", "thom")
+        print(path)
+        self.assertEquals(3, len(path))
+
+        path = breadth_first_search_with_path(graph, "me", "sss")
+        print(path)
+        self.assertEquals(0, len(path))
+
+    def test_breadth_first_search(self):
+        graph = self._generateBFSGraph()
+        self.assertTrue(breadth_first_search(graph, "me", "peggy"))
+        self.assertTrue(breadth_first_search(graph, "me", "thom"))
+        self.assertFalse(breadth_first_search(graph, "me", "sss"))
+
+    def _generateBFSGraph(self):
+        graph = {}
+        graph["me"] = {"alice", "bob", "claire"}
+        graph["bob"] = {"anuj", "peggy"}
+        graph["alice"] = {"peggy"}
+        graph["claire"] = {"thom", "jonny"}
+        graph["anuj"] = set()
+        graph["peggy"] = set()
+        graph["thom"] = set()
+        graph["jonny"] = set()
+        return graph
 
     def test_binary_search(self):
         sorted_list = [1, 3, 5, 7, 9]

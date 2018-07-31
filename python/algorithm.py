@@ -1,4 +1,66 @@
 from stack import Stack
+from collections import deque
+
+def breadth_first_search(graph, start, end):
+    """
+    广度优先搜索算法
+    """
+    searched_set = set()
+    search_list = deque()
+    search_list.extend(graph[start])
+    while (search_list):
+        person = search_list.popleft()
+        if (person in searched_set):
+            continue
+        if (person == end):
+            return True
+        else:
+            search_list.extend(graph[person])
+        searched_set.add(person)
+    return False
+
+def breadth_first_search_with_path(graph, start, end):
+    """
+    广度优先搜索算法,返回路径
+    """
+    
+    parent_vertex = {}
+    searched_set = set()
+    search_list = deque()
+
+    # init
+    curVertex = start
+    vertexs = graph[curVertex]
+    for vertex in vertexs:
+        parent_vertex[vertex] = curVertex
+    search_list.extend(vertexs)
+
+    while (search_list):
+        curVertex = search_list.popleft()
+        if (curVertex in searched_set):
+            continue
+        if (curVertex == end):
+            break
+        else:
+            vertexs = graph[curVertex]
+            for vertex in vertexs:
+                if (not (vertex in parent_vertex)):
+                    parent_vertex[vertex] = curVertex
+            search_list.extend(vertexs)
+        searched_set.add(curVertex)
+    if (curVertex == end):
+        return _bfs_path(parent_vertex, start, curVertex)
+    else:
+        return []
+
+def _bfs_path(parent_vertex, start, curVertex):
+    ret = deque()
+    while (curVertex in parent_vertex):
+        ret.appendleft(curVertex)
+        curVertex = parent_vertex[curVertex]
+    ret.appendleft(start)
+    return ret
+    
 def binary_search(sorted_list, value):
     """
         二分查找/折半查找
