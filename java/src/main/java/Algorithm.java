@@ -54,7 +54,7 @@ public class Algorithm {
         if (low >= high) {
             return;
         }
-        int index = _partSort(array, low, high);
+        int index = _partSortBest(array, low, high);
         recursionQuickSort(array, start, index);
         recursionQuickSort(array, index + 1, end);
     }
@@ -72,7 +72,7 @@ public class Algorithm {
         while (stack.size() > 0) {
             low = stack.poll();
             high = stack.poll();
-            int index = _partSort2(array, low, high);
+            int index = _partSortBest(array, low, high);
             if (low < index - 1) {
                 stack.push(index - 1);
                 stack.push(low);
@@ -114,6 +114,17 @@ public class Algorithm {
             b = r;
         }
         return b;
+    }
+
+    private static int _partSortBest(int[] array, int left, int right) {
+        int pivotIndex = left;
+        for (int i = pivotIndex + 1; i <= right; i++) {
+            if (array[i] < array[left]) {
+                _swap(array, ++pivotIndex, i);
+            }
+        }
+        _swap(array, left, pivotIndex);
+        return pivotIndex;
     }
 
     private static int _partSort(int[] array, int low, int high) {
