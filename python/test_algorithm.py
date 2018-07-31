@@ -11,6 +11,7 @@ from algorithm import recursion_quick_sort
 from algorithm import quick_sort
 from algorithm import breadth_first_search
 from algorithm import breadth_first_search_with_path
+from algorithm import dijkstra_search
 
 class AlgorithmTestCase(ut.TestCase):
 
@@ -33,6 +34,22 @@ class AlgorithmTestCase(ut.TestCase):
         self.assertTrue(breadth_first_search(graph, "me", "peggy"))
         self.assertTrue(breadth_first_search(graph, "me", "thom"))
         self.assertFalse(breadth_first_search(graph, "me", "sss"))
+
+    def test_dijkstra_search(self):
+        graph = self._generateDijkstraGraph()
+        ret = dijkstra_search(graph, "A", "F")
+        self.assertEqual(35, ret["min_weight"])
+        self.assertListEqual(['A', 'B', 'E', 'F'], ret["path"])
+    
+    def _generateDijkstraGraph(self):
+        graph = {}
+        graph["A"] = {"B":5, "C":0}
+        graph["B"] = {"D":15, "E":20}
+        graph["C"] = {"D":30, "E":35}
+        graph["D"] = {"F":20}
+        graph["E"] = {"D":3, "F":10}
+        graph["F"] = {}
+        return graph
 
     def _generateBFSGraph(self):
         graph = {}

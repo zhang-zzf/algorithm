@@ -1,6 +1,58 @@
 from stack import Stack
 from collections import deque
 
+
+def dijkstra_search(graph, start, end):
+    """
+    狄克斯特拉（带权最小路径）算法
+    适用范围：带权（无负权制）无环 有向 图
+    """
+    parent_vertex = {}
+
+    # init weight
+    vertex_weight = {}
+    for vertex in graph.keys():
+        weight = float("inf")
+        if (vertex == start):
+            weight = 0
+        vertex_weight[vertex] = {"w": weight, "searched": False}
+
+    min_weight_vertex = _dijkstra_get_min_weight_vertex(vertex_weight)
+    while min_weight_vertex is not None:
+        vertex_weight[min_weight_vertex]["searched"] = True
+        weight =  vertex_weight[min_weight_vertex]["w"]
+
+        edges = graph[min_weight_vertex]
+        for vertex in edges.keys():
+            weight_tmp = weight + edges[vertex]
+            if weight_tmp < vertex_weight[vertex]["w"]:
+                vertex_weight[vertex]["w"] = weight_tmp
+                parent_vertex[vertex] = min_weight_vertex
+        min_weight_vertex = _dijkstra_get_min_weight_vertex(vertex_weight)
+
+    path = _dijkstra_extractPath(parent_vertex, start, end)
+    return {"min_weight": vertex_weight[end]["w"] ,"path": list(path)}
+
+def _dijkstra_extractPath(parent_vertex, start, end):
+    ret = deque()
+    vertex = end
+    while vertex != start:
+        ret.appendleft(vertex)
+        vertex = parent_vertex[vertex]
+    ret.appendleft(start)
+    return ret
+
+def _dijkstra_get_min_weight_vertex(vertex_weight):
+    min_weight = float("inf")
+    min_weight_vertex = None
+    for vertex in vertex_weight.keys():
+        weight_node = vertex_weight[vertex]
+        if (not weight_node["searched"]) and (weight_node["w"] < min_weight):
+            min_weight = weight_node["w"]
+            min_weight_vertex = vertex
+    return min_weight_vertex
+
+
 def breadth_first_search(graph, start, end):
     """
     广度优先搜索算法
@@ -19,11 +71,12 @@ def breadth_first_search(graph, start, end):
         searched_set.add(person)
     return False
 
+
 def breadth_first_search_with_path(graph, start, end):
     """
     广度优先搜索算法,返回路径
     """
-    
+
     parent_vertex = {}
     searched_set = set()
     search_list = deque()
@@ -53,6 +106,7 @@ def breadth_first_search_with_path(graph, start, end):
     else:
         return []
 
+
 def _bfs_path(parent_vertex, start, curVertex):
     ret = deque()
     while (curVertex in parent_vertex):
@@ -60,7 +114,8 @@ def _bfs_path(parent_vertex, start, curVertex):
         curVertex = parent_vertex[curVertex]
     ret.appendleft(start)
     return ret
-    
+
+
 def binary_search(sorted_list, value):
     """
         二分查找/折半查找
@@ -98,6 +153,7 @@ def recursion_binary_search(sorted_list, value, start, end):
         return recursion_binary_search(sorted_list, value, mid_index + 1, end)
     else:
         return recursion_binary_search(sorted_list, value, start, mid_index)
+
 
 def selection_sort(ordinary_list):
     """
@@ -181,6 +237,7 @@ def recursion_max_value(lst=[], start=0, end=0):
     else:
         return lst[start]
 
+
 def recursion_quick_sort(lst, start, end):
     """
     快速排序
@@ -190,9 +247,10 @@ def recursion_quick_sort(lst, start, end):
     # 基线条件
     if (low >= high):
         return
-    index = _partSort(lst, low, high) 
+    index = _partSort(lst, low, high)
     recursion_quick_sort(lst, start, index)
     recursion_quick_sort(lst, index + 1, end)
+
 
 def quick_sort(lst, start, end):
     """
@@ -217,6 +275,7 @@ def quick_sort(lst, start, end):
             stack.push(index + 1)
             stack.push(high)
 
+
 def _partSort(lst, left, right):
     """
     分区排序，快速排序的核心
@@ -230,4 +289,4 @@ def _partSort(lst, left, right):
             right -= 1
         _swap(lst, left, right)
     _swap(lst, left, pivot_index)
-    return left       
+    return left
