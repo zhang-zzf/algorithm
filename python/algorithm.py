@@ -1,5 +1,7 @@
-from stack import Stack
+# !/usr/bin/python
+# -*- coding: utf-8 -*-
 from collections import deque
+from stack import Stack
 
 
 def dijkstra_search(graph, start, end):
@@ -13,15 +15,14 @@ def dijkstra_search(graph, start, end):
     vertex_weight = {}
     for vertex in graph.keys():
         weight = float("inf")
-        if (vertex == start):
+        if vertex == start:
             weight = 0
         vertex_weight[vertex] = {"w": weight, "searched": False}
 
     min_weight_vertex = _dijkstra_get_min_weight_vertex(vertex_weight)
     while min_weight_vertex is not None:
         vertex_weight[min_weight_vertex]["searched"] = True
-        weight =  vertex_weight[min_weight_vertex]["w"]
-
+        weight = vertex_weight[min_weight_vertex]["w"]
         edges = graph[min_weight_vertex]
         for vertex in edges.keys():
             weight_tmp = weight + edges[vertex]
@@ -31,7 +32,8 @@ def dijkstra_search(graph, start, end):
         min_weight_vertex = _dijkstra_get_min_weight_vertex(vertex_weight)
 
     path = _dijkstra_extractPath(parent_vertex, start, end)
-    return {"min_weight": vertex_weight[end]["w"] ,"path": list(path)}
+    return {"min_weight": vertex_weight[end]["w"], "path": list(path)}
+
 
 def _dijkstra_extractPath(parent_vertex, start, end):
     ret = deque()
@@ -41,6 +43,7 @@ def _dijkstra_extractPath(parent_vertex, start, end):
         vertex = parent_vertex[vertex]
     ret.appendleft(start)
     return ret
+
 
 def _dijkstra_get_min_weight_vertex(vertex_weight):
     min_weight = float("inf")
@@ -60,11 +63,11 @@ def breadth_first_search(graph, start, end):
     searched_set = set()
     search_list = deque()
     search_list.extend(graph[start])
-    while (search_list):
+    while search_list:
         person = search_list.popleft()
-        if (person in searched_set):
+        if person in searched_set:
             continue
-        if (person == end):
+        if person == end:
             return True
         else:
             search_list.extend(graph[person])
@@ -76,42 +79,41 @@ def breadth_first_search_with_path(graph, start, end):
     """
     广度优先搜索算法,返回路径
     """
-
     parent_vertex = {}
     searched_set = set()
     search_list = deque()
 
     # init
-    curVertex = start
-    vertexs = graph[curVertex]
+    cur_vertex = start
+    vertexs = graph[cur_vertex]
     for vertex in vertexs:
-        parent_vertex[vertex] = curVertex
+        parent_vertex[vertex] = cur_vertex
     search_list.extend(vertexs)
 
     while (search_list):
-        curVertex = search_list.popleft()
-        if (curVertex in searched_set):
+        cur_vertex = search_list.popleft()
+        if (cur_vertex in searched_set):
             continue
-        if (curVertex == end):
+        if (cur_vertex == end):
             break
         else:
-            vertexs = graph[curVertex]
+            vertexs = graph[cur_vertex]
             for vertex in vertexs:
                 if (not (vertex in parent_vertex)):
-                    parent_vertex[vertex] = curVertex
+                    parent_vertex[vertex] = cur_vertex
             search_list.extend(vertexs)
-        searched_set.add(curVertex)
-    if (curVertex == end):
-        return _bfs_path(parent_vertex, start, curVertex)
+        searched_set.add(cur_vertex)
+    if (cur_vertex == end):
+        return _bfs_path(parent_vertex, start, cur_vertex)
     else:
         return []
 
 
-def _bfs_path(parent_vertex, start, curVertex):
+def _bfs_path(parent_vertex, start, cur_vertex):
     ret = deque()
-    while (curVertex in parent_vertex):
-        ret.appendleft(curVertex)
-        curVertex = parent_vertex[curVertex]
+    while (cur_vertex in parent_vertex):
+        ret.appendleft(cur_vertex)
+        cur_vertex = parent_vertex[cur_vertex]
     ret.appendleft(start)
     return ret
 
