@@ -29,6 +29,14 @@ public class AlgorithmTest {
   }
 
   @Test
+  public void testQuickSort() {
+    for (int[] array : rank) {
+      QuickSort.sort(array);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
+  @Test
   public void testHeapFindKMax() {
     for (int[] array : rank) {
       assertEquals(3, Algorithm.heapFindKMax(array, 3));
