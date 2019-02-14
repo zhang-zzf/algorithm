@@ -130,4 +130,43 @@ public class BinarySearch {
 
   // TODO 还有2种情况
 
+  /**
+   * <=
+   * 先动左指针  尽量向右吞
+   *
+   * left-1>=0&&array[left-1]==value 时，left-1位置即为value在array中最大的index
+   * 不满足以上条件时，array中不存在value
+   *
+   * left<array.length时，left位置即为array中第一个大于value的index
+   *
+   */
+
+  /**
+   * >=
+   * 先动右指针  尽量向坐吞
+   *
+   * right+1<array.length && array[right+1]==value 时，right+1位置为value在array中的最小index
+   * 不满足以上条件时，array中不存在value
+   *
+   * right>=0 right位置为array中最后一个小于value的index
+   */
+
+  /**
+   * <
+   * 先动左指针  尽量少吞
+   * 和第二种情况一样
+   */
+
+  /**
+   * >
+   * 先动右指针  尽量少吞
+   * 和第一种情况一样
+   */
+  /**
+   * 综上所述，二分查找可以查找4个位置
+   * array中等于value的最小index和最大index
+   * array中小于value的最大index和大于value的最小index
+   *
+   */
+
 }
