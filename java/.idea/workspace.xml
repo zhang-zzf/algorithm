@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2edb351c-acf5-4ab2-a549-cbe3adc63577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/InsertSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SelectSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AlgorithmTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AlgorithmTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="2edb351c-acf5-4ab2-a549-cbe3adc63577" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,12 +197,12 @@
       <option name="presentableId" value="Default" />
       <updated>1551145886481</updated>
       <workItem from="1551145889169" duration="1121000" />
-      <workItem from="1551147191285" duration="785000" />
+      <workItem from="1551147191285" duration="1212000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1906000" />
+    <option name="totallyTimeSpent" value="2333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1360" height="877" extended-state="6" />
