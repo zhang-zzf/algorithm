@@ -28,6 +28,15 @@ public class AlgorithmTest {
     rank = Algorithm.rank(ARRAY_ORIGINAL);
   }
 
+
+  @Test
+  public void testInsertSort() {
+    for (int[] array : rank) {
+      InsertSort.sort(array);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
   @Test
   public void testQuickSort() {
     for (int[] array : rank) {
