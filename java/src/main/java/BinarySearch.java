@@ -3,6 +3,21 @@
  */
 public class BinarySearch {
 
+  public static int recursiveSearch(int[] array, int key, int startIndex, int endIndex) {
+    if (startIndex > endIndex) {
+      return -1;
+    } else {
+      int mid = (startIndex + endIndex) / 2;
+      if (array[mid] == key) {
+        return mid;
+      } else if (array[mid] > key) {
+        return recursiveSearch(array, key, mid + 1, endIndex);
+      } else {
+        return recursiveSearch(array, key, startIndex, mid - 1);
+      }
+    }
+  }
+
   /**
    * binary search you known.
    *
