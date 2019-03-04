@@ -30,6 +30,13 @@ public class InsertSort {
     }
   }
 
+
+  public static void sort3(int[] array) {
+    for (int keyIndex = 1; keyIndex < array.length; keyIndex++) {
+      _insert(array, keyIndex);
+    }
+  }
+
   public static void recursiveInsert(int[] array, int length) {
     if (length > 1) {
       recursiveInsert(array, length - 1);
@@ -37,16 +44,13 @@ public class InsertSort {
     }
   }
 
-  private static void _insert(int[] array, int index) {
-    int key = array[index];
-    for (int i = index - 1; i >= 0; i--) {
-      if (array[i] > key) {
-        array[i + 1] = array[i];
-      } else {
-        array[i + 1] = key;
-        break;
-      }
+  private static void _insert(int[] array, int keyIndex) {
+    int key = array[keyIndex];
+    int i = keyIndex - 1;
+    while (i >= 0 && array[i] > key) {
+      array[i + 1] = array[i--];
     }
+    array[i + 1] = key;
   }
 
 

@@ -30,6 +30,22 @@ public class AlgorithmTest {
 
 
   @Test
+  public void testInsertSort3() {
+    for (int[] array : rank) {
+      InsertSort.sort3(array);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
+  @Test
+  public void testInsertSortRecursive() {
+    for (int[] array : rank) {
+      InsertSort.recursiveInsert(array, array.length);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
+  @Test
   public void testInsertSort() {
     for (int[] array : rank) {
       InsertSort.sort(array);
