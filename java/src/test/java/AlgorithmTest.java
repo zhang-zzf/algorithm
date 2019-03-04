@@ -42,7 +42,14 @@ public class AlgorithmTest {
     for (int[] array : rank) {
       InsertSort.recursiveInsert(array, array.length);
       assertArrayEquals(ARRAY_SORTED, array);
-      
+    }
+  }
+
+  @Test
+  public void testInsertSortWithBinarySearch() {
+    for (int[] array : rank) {
+      InsertSort.insertSortWithBinarySearch(array);
+      assertArrayEquals(ARRAY_SORTED, array);
     }
   }
 

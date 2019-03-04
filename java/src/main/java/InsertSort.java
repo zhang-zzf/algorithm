@@ -44,6 +44,12 @@ public class InsertSort {
     }
   }
 
+  public static void insertSortWithBinarySearch(int[] array) {
+    for (int i = 1; i < array.length; i++) {
+      _insertWithBinarySearch(array, i);
+    }
+  }
+
   private static void _insert(int[] array, int keyIndex) {
     int key = array[keyIndex];
     int i = keyIndex - 1;
@@ -51,6 +57,27 @@ public class InsertSort {
       array[i + 1] = array[i--];
     }
     array[i + 1] = key;
+  }
+
+  private static void _insertWithBinarySearch(int[] array, int keyIndex) {
+    int key = array[keyIndex];
+    int insertIndex = _binarySearch(array, keyIndex);
+    System.arraycopy(array, insertIndex, array, insertIndex + 1, keyIndex - insertIndex);
+    array[insertIndex] = key;
+  }
+
+  private static int _binarySearch(int[] array, int keyIndex) {
+    int key = array[keyIndex];
+    int left = 0, right = keyIndex - 1;
+    while (left <= right) {
+      int mid = (left + right) / 2;
+      if (array[mid] <= key) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+    return left;
   }
 
 
