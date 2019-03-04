@@ -42,6 +42,7 @@ public class AlgorithmTest {
     for (int[] array : rank) {
       InsertSort.recursiveInsert(array, array.length);
       assertArrayEquals(ARRAY_SORTED, array);
+      
     }
   }
 
