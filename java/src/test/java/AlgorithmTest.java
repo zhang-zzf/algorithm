@@ -54,6 +54,14 @@ public class AlgorithmTest {
   }
 
   @Test
+  public void testMergeSort22() {
+    for (int[] array : rank) {
+      MergeSort.mergeSort(array);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
+  @Test
   public void testInsertSort() {
     for (int[] array : rank) {
       InsertSort.sort(array);
