@@ -50,7 +50,7 @@ public class InsertSort {
     }
   }
 
-  private static void _insert(int[] array, int keyIndex) {
+  public static void _insert(int[] array, int keyIndex) {
     int key = array[keyIndex];
     int i = keyIndex - 1;
     while (i >= 0 && array[i] > key) {

@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @date 2018-11-29 16:31
  * @description TODO
  **/
-public class MergeSort {
+public class MergeSort2 {
 
   public static void mergeSort2(int[] array) {
     if (array.length < 2) {

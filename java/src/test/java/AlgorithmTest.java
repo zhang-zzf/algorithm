@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import select.sort.heap.IntArrayHeapSort;
-import select.sort.merge.MergeSort;
+import select.sort.merge.MergeSort2;
 
 public class AlgorithmTest {
 
@@ -54,9 +54,16 @@ public class AlgorithmTest {
   }
 
   @Test
+  public void testMergeSort33() {
+      for (int[] array : rank) {
+        MergeSort.inserSortThenMerge(array);
+        assertArrayEquals(ARRAY_SORTED, array);
+      }
+  }
+  @Test
   public void testMergeSort22() {
     for (int[] array : rank) {
-      MergeSort.mergeSort(array);
+      MergeSort.sort(array);
       assertArrayEquals(ARRAY_SORTED, array);
     }
   }
@@ -105,7 +112,7 @@ public class AlgorithmTest {
   @Test
   public void testMergeSort2() {
     for (int[] array : rank) {
-      MergeSort.mergeSort2(array);
+      MergeSort2.mergeSort2(array);
       assertArrayEquals(ARRAY_SORTED, array);
     }
   }
@@ -113,7 +120,7 @@ public class AlgorithmTest {
   @Test
   public void testMergeSort() {
     for (int[] array : rank) {
-      MergeSort.mergeSort(array);
+      MergeSort2.mergeSort(array);
       assertArrayEquals(ARRAY_SORTED, array);
     }
   }
