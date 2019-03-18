@@ -28,6 +28,21 @@ public class AlgorithmTest {
     rank = Algorithm.rank(ARRAY_ORIGINAL);
   }
 
+  @Test
+  public void testMaxSubArray() {
+    for (int[] array : rank) {
+      int max = MaxSubArray.max(array);
+      MaxSubArray.MaxData maxData = MaxSubArray.findMaxO_nlgn(array);
+      MaxSubArray.MaxData m2 = MaxSubArray.findMaxO_n(array);
+      MaxSubArray.MaxData m3 = MaxSubArray.findMaxDataO_n(array);
+      int max2 = MaxSubArray.maxByDivideAndConquer(array);
+      assertEquals(max, max2);
+      assertEquals(max, maxData.getMax());
+      assertEquals(max, m3.getMax());
+      assertEquals(maxData, m3);
+      //assertEquals(max, m2.getMax());
+    }
+  }
 
   @Test
   public void testInsertSort3() {
@@ -54,12 +69,22 @@ public class AlgorithmTest {
   }
 
   @Test
-  public void testMergeSort33() {
-      for (int[] array : rank) {
-        MergeSort.inserSortThenMerge(array);
-        assertArrayEquals(ARRAY_SORTED, array);
-      }
+  public void testReversePair() {
+    for (int[] array : rank) {
+      int count = ReversePair.count(array);
+      int count2 = ReversePair.countByMergeSort(array);
+      assertEquals(count, count2);
+    }
   }
+
+  @Test
+  public void testMergeSort33() {
+    for (int[] array : rank) {
+      MergeSort.inserSortThenMerge(array);
+      assertArrayEquals(ARRAY_SORTED, array);
+    }
+  }
+
   @Test
   public void testMergeSort22() {
     for (int[] array : rank) {
