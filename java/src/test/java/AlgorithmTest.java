@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import select.sort.heap.IntArrayHeapSort;
+import select.sort.heap.MaxHeapSortIntArray;
 import select.sort.merge.MergeSort2;
 
 public class AlgorithmTest {
@@ -26,6 +27,14 @@ public class AlgorithmTest {
   @Before
   public void beforClass() {
     rank = Algorithm.rank(ARRAY_ORIGINAL);
+  }
+
+  @Test
+  public void testMaxHeapSortIntArray() {
+    for (int[] a : rank) {
+      MaxHeapSortIntArray.sort(a);
+      assertArrayEquals(ARRAY_SORTED, a);
+    }
   }
 
   @Test
