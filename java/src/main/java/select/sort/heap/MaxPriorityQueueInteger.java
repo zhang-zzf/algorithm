@@ -47,6 +47,7 @@ public class MaxPriorityQueueInteger extends AbstractQueue<Integer> {
         } else {
             Integer x = array[0];
             array[0] = array[--size];
+            array[size] = null; // GC
             adjustHeap(array, 0, size);
             return x;
         }
