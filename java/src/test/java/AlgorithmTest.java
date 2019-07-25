@@ -18,288 +18,292 @@ import select.sort.merge.MergeSort2;
 
 public class AlgorithmTest {
 
-  private static final int[] ARRAY_ORIGINAL = new int[]{1, 8, 3, 9, 1, -5, -100, -33};
-  private static final int[] ARRAY_SORTED = new int[]{-100, -33, -5, 1, 1, 3, 8, 9};
-  private static final int[] ARRAY_SORTED2 = new int[]{9, 8, 3, 1, 1, -5, -33, -100};
+    public static final int[] ARRAY_ORIGINAL = new int[]{1, 8, 3, 9, 1, -5, -100, -33};
+    public static final int[] ARRAY_SORTED = new int[]{-100, -33, -5, 1, 1, 3, 8, 9};
+    public static final int[] ARRAY_SORTED2 = new int[]{9, 8, 3, 1, 1, -5, -33, -100};
 
-  private static List<int[]> rank;
+    public static List<int[]> rank;
 
-  @Before
-  public void beforClass() {
-    rank = Algorithm.rank(ARRAY_ORIGINAL);
-  }
-
-  @Test
-  public void testMaxHeapSortIntArray() {
-    for (int[] a : rank) {
-      MaxHeapSortIntArray.sort(a);
-      assertArrayEquals(ARRAY_SORTED, a);
+    static {
+        rank = Algorithm.rank(ARRAY_ORIGINAL);
     }
-  }
 
-  @Test
-  public void testMaxSubArray() {
-    for (int[] array : rank) {
-      int max = MaxSubArray.max(array);
-      MaxSubArray.MaxData maxData = MaxSubArray.findMaxO_nlgn(array);
-      MaxSubArray.MaxData m2 = MaxSubArray.findMaxO_n(array);
-      MaxSubArray.MaxData m3 = MaxSubArray.findMaxDataO_n(array);
-      int max2 = MaxSubArray.maxByDivideAndConquer(array);
-      assertEquals(max, max2);
-      assertEquals(max, maxData.getMax());
-      assertEquals(max, m3.getMax());
-      assertEquals(maxData, m3);
-      //assertEquals(max, m2.getMax());
+    @Before
+    public void beforClass() {
+
     }
-  }
 
-  @Test
-  public void testInsertSort3() {
-    for (int[] array : rank) {
-      InsertSort.sort3(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testMaxHeapSortIntArray() {
+        for (int[] a : rank) {
+            MaxHeapSortIntArray.sort(a);
+            assertArrayEquals(ARRAY_SORTED, a);
+        }
     }
-  }
 
-  @Test
-  public void testInsertSortRecursive() {
-    for (int[] array : rank) {
-      InsertSort.recursiveInsert(array, array.length);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testMaxSubArray() {
+        for (int[] array : rank) {
+            int max = MaxSubArray.max(array);
+            MaxSubArray.MaxData maxData = MaxSubArray.findMaxO_nlgn(array);
+            MaxSubArray.MaxData m2 = MaxSubArray.findMaxO_n(array);
+            MaxSubArray.MaxData m3 = MaxSubArray.findMaxDataO_n(array);
+            int max2 = MaxSubArray.maxByDivideAndConquer(array);
+            assertEquals(max, max2);
+            assertEquals(max, maxData.getMax());
+            assertEquals(max, m3.getMax());
+            assertEquals(maxData, m3);
+            //assertEquals(max, m2.getMax());
+        }
     }
-  }
 
-  @Test
-  public void testInsertSortWithBinarySearch() {
-    for (int[] array : rank) {
-      InsertSort.insertSortWithBinarySearch(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testInsertSort3() {
+        for (int[] array : rank) {
+            InsertSort.sort3(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testReversePair() {
-    for (int[] array : rank) {
-      int count = ReversePair.count(array);
-      int count2 = ReversePair.countByMergeSort(array);
-      assertEquals(count, count2);
+    @Test
+    public void testInsertSortRecursive() {
+        for (int[] array : rank) {
+            InsertSort.recursiveInsert(array, array.length);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testMergeSort33() {
-    for (int[] array : rank) {
-      MergeSort.inserSortThenMerge(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testInsertSortWithBinarySearch() {
+        for (int[] array : rank) {
+            InsertSort.insertSortWithBinarySearch(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testMergeSort22() {
-    for (int[] array : rank) {
-      MergeSort.sort(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testReversePair() {
+        for (int[] array : rank) {
+            int count = ReversePair.count(array);
+            int count2 = ReversePair.countByMergeSort(array);
+            assertEquals(count, count2);
+        }
     }
-  }
 
-  @Test
-  public void testInsertSort() {
-    for (int[] array : rank) {
-      InsertSort.sort(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testMergeSort33() {
+        for (int[] array : rank) {
+            MergeSort.inserSortThenMerge(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testQuickSort() {
-    for (int[] array : rank) {
-      QuickSort.sort(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testMergeSort22() {
+        for (int[] array : rank) {
+            MergeSort.sort(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testHeapFindKMax() {
-    for (int[] array : rank) {
-      assertEquals(3, Algorithm.heapFindKMax(array, 3));
-      assertEquals(1, Algorithm.heapFindKMax(array, 5));
+    @Test
+    public void testInsertSort() {
+        for (int[] array : rank) {
+            InsertSort.sort(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testFindSecondMax() {
-    for (int[] array : rank) {
-      int secondMax = Algorithm.findSecondMaxWrong(array);
-      assertEquals(8, secondMax);
+    @Test
+    public void testQuickSort() {
+        for (int[] array : rank) {
+            QuickSort.sort(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void testquickSortFindKMax() {
-    for (int[] array : rank) {
-      assertEquals(8, Algorithm.quickSortFindKMax(array, 2));
-      assertEquals(3, Algorithm.quickSortFindKMax(array, 3));
-      assertEquals(1, Algorithm.quickSortFindKMax(array, 4));
+    @Test
+    public void testHeapFindKMax() {
+        for (int[] array : rank) {
+            assertEquals(3, Algorithm.heapFindKMax(array, 3));
+            assertEquals(1, Algorithm.heapFindKMax(array, 5));
+        }
     }
-  }
 
-  @Test
-  public void testMergeSort2() {
-    for (int[] array : rank) {
-      MergeSort2.mergeSort2(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testFindSecondMax() {
+        for (int[] array : rank) {
+            int secondMax = Algorithm.findSecondMaxWrong(array);
+            assertEquals(8, secondMax);
+        }
     }
-  }
 
-  @Test
-  public void testMergeSort() {
-    for (int[] array : rank) {
-      MergeSort2.mergeSort(array);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testquickSortFindKMax() {
+        for (int[] array : rank) {
+            assertEquals(8, Algorithm.quickSortFindKMax(array, 2));
+            assertEquals(3, Algorithm.quickSortFindKMax(array, 3));
+            assertEquals(1, Algorithm.quickSortFindKMax(array, 4));
+        }
     }
-  }
 
-  @Test
-  public void testHeapSort() {
-    for (int[] array : rank) {
-      IntArrayHeapSort.heapSort(array);
-      assertArrayEquals(ARRAY_SORTED2, array);
+    @Test
+    public void testMergeSort2() {
+        for (int[] array : rank) {
+            MergeSort2.mergeSort2(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void depthFirstSearch() {
-    graph.bfs.Graph g = graph.bfs.Graph.generate2();
-    boolean result = DepthFirstSearchAlgorithm.search(g, "B", "H");
-    assertTrue(result);
-  }
-
-  @Test
-  public void binarySearch() {
-    int[] sortedList = {1, 3, 5, 7, 9};
-    int index = Algorithm.binarySearch(sortedList, 7);
-    assertEquals(3, index);
-    index = Algorithm.binarySearch(sortedList, 10);
-    assertEquals(-1, index);
-
-    index = Algorithm.binarySearch(sortedList, 3);
-    assertEquals(1, index);
-  }
-
-  @Test
-  public void binarySearchSmallestIndex() {
-    int[] sortedList = {1, 3, 3, 3, 3, 5, 5, 7, 7, 7, 7, 8, 9,};
-    int idx = Algorithm.binarySearchSmallestIndex(sortedList, 3);
-    assertEquals(1, idx);
-    idx = Algorithm.binarySearchSmallestIndex(sortedList, 7);
-    assertEquals(7, idx);
-    idx = Algorithm.binarySearchSmallestIndex(sortedList, 2);
-    assertEquals(-1, idx);
-    idx = Algorithm.binarySearchSmallestIndex(sortedList, 1000);
-    assertEquals(-1, idx);
-
-  }
-
-  @Test
-  public void selectionSort() {
-    int[] list = {1, 8, 3, 9, 11};
-    Algorithm.selectionSort(list);
-    assertArrayEquals(new int[]{11, 9, 8, 3, 1}, list);
-  }
-
-  @Test
-  public void recursionQuickSort() {
-    int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
-    Algorithm.recursionQuickSort(list, 0, list.length);
-    assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
-    for (int[] array : rank) {
-      Algorithm.recursionQuickSort(array, 0, array.length);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testMergeSort() {
+        for (int[] array : rank) {
+            MergeSort2.mergeSort(array);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
     }
-  }
 
-  @Test
-  public void quickSort() {
-    int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
-    Algorithm.quickSort(list, 0, list.length);
-    assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
-    for (int[] array : rank) {
-      Algorithm.quickSort(array, 0, array.length);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void testHeapSort() {
+        for (int[] array : rank) {
+            IntArrayHeapSort.heapSort(array);
+            assertArrayEquals(ARRAY_SORTED2, array);
+        }
     }
-  }
 
-  @Test
-  public void gcd() {
-    int gcd = Algorithm.recursionGcd(100, 8888);
-    assertEquals(4, gcd);
-    assertEquals(gcd, Algorithm.recursionGcd(8888, 100));
-    assertEquals(gcd, Algorithm.gcd(100, 8888));
-    assertEquals(gcd, Algorithm.gcd(8888, 100));
-  }
-
-  @Test
-  public void dijkstraGraph() {
-    Graph g = Graph.generateGraph();
-    List<Vertex> minWeightVertexs = new LinkedList<>();
-    minWeightVertexs.add(Vertex.builder().name("start").build());
-    minWeightVertexs.add(Vertex.builder().name("B").build());
-    minWeightVertexs.add(Vertex.builder().name("C").build());
-    minWeightVertexs.add(Vertex.builder().name("stop").build());
-    List<Vertex> vertices = DijkstraAlgorithm
-        .dijkstraGraph(g, new Vertex("start"), new Vertex("stop"));
-    assertArrayEquals(minWeightVertexs.toArray(), vertices.toArray());
-  }
-
-
-  @Test
-  public void dijkstraGraph2() {
-    graph.dijkstra.better.Graph g = graph.dijkstra.better.Graph.generateGraph();
-    assertEquals(4, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "e"));
-    assertEquals(1, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "b"));
-    assertEquals(10, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "c"));
-    assertEquals(40, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "d"));
-    assertEquals(50, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "e"));
-  }
-
-  @Test
-  public void bfs() {
-    String[] bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "peggy");
-    assertEquals(3, bfs.length);
-
-    bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "thom");
-    assertEquals(3, bfs.length);
-
-    bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "dddd");
-    assertEquals(0, bfs.length);
-  }
-
-  @Test
-  public void dualPivotQuickSort() {
-    int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
-    Algorithm.dualPivotQuickSort(list);
-    assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
-    for (int[] array : rank) {
-      Algorithm.quickSort(array, 0, array.length);
-      assertArrayEquals(ARRAY_SORTED, array);
+    @Test
+    public void depthFirstSearch() {
+        graph.bfs.Graph g = graph.bfs.Graph.generate2();
+        boolean result = DepthFirstSearchAlgorithm.search(g, "B", "H");
+        assertTrue(result);
     }
-  }
 
-  @Test
-  public void rank() {
-    int[] list = {1, 2, 3, 4};
-    List<int[]> rank = Algorithm.rank(list);
-    for (int[] array : rank) {
-      System.out.println(Arrays.toString(array));
+    @Test
+    public void binarySearch() {
+        int[] sortedList = {1, 3, 5, 7, 9};
+        int index = Algorithm.binarySearch(sortedList, 7);
+        assertEquals(3, index);
+        index = Algorithm.binarySearch(sortedList, 10);
+        assertEquals(-1, index);
+
+        index = Algorithm.binarySearch(sortedList, 3);
+        assertEquals(1, index);
     }
-    assertEquals(24, rank.size());
-  }
 
-  @Test
-  public void factorial() {
-    assertEquals(1, Algorithm.factorial(0));
-    assertEquals(1, Algorithm.factorial(1));
-    assertEquals(6, Algorithm.factorial(3));
-    assertEquals(40320, Algorithm.factorial(8));
-  }
+    @Test
+    public void binarySearchSmallestIndex() {
+        int[] sortedList = {1, 3, 3, 3, 3, 5, 5, 7, 7, 7, 7, 8, 9,};
+        int idx = Algorithm.binarySearchSmallestIndex(sortedList, 3);
+        assertEquals(1, idx);
+        idx = Algorithm.binarySearchSmallestIndex(sortedList, 7);
+        assertEquals(7, idx);
+        idx = Algorithm.binarySearchSmallestIndex(sortedList, 2);
+        assertEquals(-1, idx);
+        idx = Algorithm.binarySearchSmallestIndex(sortedList, 1000);
+        assertEquals(-1, idx);
+
+    }
+
+    @Test
+    public void selectionSort() {
+        int[] list = {1, 8, 3, 9, 11};
+        Algorithm.selectionSort(list);
+        assertArrayEquals(new int[]{11, 9, 8, 3, 1}, list);
+    }
+
+    @Test
+    public void recursionQuickSort() {
+        int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
+        Algorithm.recursionQuickSort(list, 0, list.length);
+        assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
+        for (int[] array : rank) {
+            Algorithm.recursionQuickSort(array, 0, array.length);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
+    }
+
+    @Test
+    public void quickSort() {
+        int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
+        Algorithm.quickSort(list, 0, list.length);
+        assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
+        for (int[] array : rank) {
+            Algorithm.quickSort(array, 0, array.length);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
+    }
+
+    @Test
+    public void gcd() {
+        int gcd = Algorithm.recursionGcd(100, 8888);
+        assertEquals(4, gcd);
+        assertEquals(gcd, Algorithm.recursionGcd(8888, 100));
+        assertEquals(gcd, Algorithm.gcd(100, 8888));
+        assertEquals(gcd, Algorithm.gcd(8888, 100));
+    }
+
+    @Test
+    public void dijkstraGraph() {
+        Graph g = Graph.generateGraph();
+        List<Vertex> minWeightVertexs = new LinkedList<>();
+        minWeightVertexs.add(Vertex.builder().name("start").build());
+        minWeightVertexs.add(Vertex.builder().name("B").build());
+        minWeightVertexs.add(Vertex.builder().name("C").build());
+        minWeightVertexs.add(Vertex.builder().name("stop").build());
+        List<Vertex> vertices = DijkstraAlgorithm
+            .dijkstraGraph(g, new Vertex("start"), new Vertex("stop"));
+        assertArrayEquals(minWeightVertexs.toArray(), vertices.toArray());
+    }
+
+
+    @Test
+    public void dijkstraGraph2() {
+        graph.dijkstra.better.Graph g = graph.dijkstra.better.Graph.generateGraph();
+        assertEquals(4, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "e"));
+        assertEquals(1, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "b"));
+        assertEquals(10, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "a", "c"));
+        assertEquals(40, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "d"));
+        assertEquals(50, graph.dijkstra.better.DijkstraAlgorithm.dijkstra(g, "f", "e"));
+    }
+
+    @Test
+    public void bfs() {
+        String[] bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "peggy");
+        assertEquals(3, bfs.length);
+
+        bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "thom");
+        assertEquals(3, bfs.length);
+
+        bfs = BreadthFirstSearchAlgorithm.bfs(graph.bfs.Graph.generate(), "me", "dddd");
+        assertEquals(0, bfs.length);
+    }
+
+    @Test
+    public void dualPivotQuickSort() {
+        int[] list = {1, 8, 3, 9, 1, 100, 88, -50, -100};
+        Algorithm.dualPivotQuickSort(list);
+        assertArrayEquals(new int[]{-100, -50, 1, 1, 3, 8, 9, 88, 100}, list);
+        for (int[] array : rank) {
+            Algorithm.quickSort(array, 0, array.length);
+            assertArrayEquals(ARRAY_SORTED, array);
+        }
+    }
+
+    @Test
+    public void rank() {
+        int[] list = {1, 2, 3, 4};
+        List<int[]> rank = Algorithm.rank(list);
+        for (int[] array : rank) {
+            System.out.println(Arrays.toString(array));
+        }
+        assertEquals(24, rank.size());
+    }
+
+    @Test
+    public void factorial() {
+        assertEquals(1, Algorithm.factorial(0));
+        assertEquals(1, Algorithm.factorial(1));
+        assertEquals(6, Algorithm.factorial(3));
+        assertEquals(40320, Algorithm.factorial(8));
+    }
 }
