@@ -7,9 +7,12 @@ import graph.dfs.DepthFirstSearchAlgorithm;
 import graph.dijkstra.feng.DijkstraAlgorithm;
 import graph.dijkstra.feng.Graph;
 import graph.dijkstra.feng.Vertex;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 import select.sort.heap.IntArrayHeapSort;
@@ -30,6 +33,49 @@ public class AlgorithmTest {
 
     @Before
     public void beforClass() {
+
+    }
+
+    @Test
+    public void testDeleteDuplicateSortedArray() {
+        List<Integer> array = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            array.add(i);
+        }
+
+        // build array sample
+        List<List<Integer>> arrays = new ArrayList<>(10000);
+        arrays.add(new ArrayList<>(array));
+        Random random = new Random(5);
+        for (int i = 0; i < 10000; i++) {
+            List<Integer> arraySample = new ArrayList<>();
+            for (int j = 0; j < 11; j++) {
+                Integer tmp = array.get(j);
+                arraySample.add(tmp);
+                for (int m = 0; m < random.nextInt(5); m++) {
+                    arraySample.add(tmp);
+                }
+            }
+            arrays.add(arraySample);
+        }
+
+        for (List<Integer> arraySample : arrays) {
+            assertTrue(Algorithm.arrayDeleteDuplicate(arraySample).equals(array));
+        }
+
+        assertTrue(
+            Algorithm.arrayDeleteDuplicate(Collections.emptyList()).equals(Collections.EMPTY_LIST));
+
+        array = Arrays.asList(1);
+        List<Integer> arraySample = new ArrayList<>();
+        arraySample.add(1);
+        assertTrue(Algorithm.arrayDeleteDuplicate(arraySample).equals(array));
+
+        arraySample.add(1);
+        assertTrue(Algorithm.arrayDeleteDuplicate(arraySample).equals(array));
+
+        arraySample.add(1);
+        assertTrue(Algorithm.arrayDeleteDuplicate(arraySample).equals(array));
 
     }
 
