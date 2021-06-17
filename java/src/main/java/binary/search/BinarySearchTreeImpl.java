@@ -13,6 +13,7 @@ public class BinarySearchTreeImpl<T extends Comparable<T>> implements BinarySear
     /**
      * 向树中插入一个元素，插入后，树依旧保持二叉搜索树的属性
      */
+    @Override
     public void insert(T data) {
         if (root == null) {
             Node<T> node = Node.build(data);

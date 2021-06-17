@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import base.Algorithm;
 import binary.search.BinarySearchTree;
 import binary.search.BinarySearchTree.Node;
 import binary.search.BinarySearchTreeImpl;

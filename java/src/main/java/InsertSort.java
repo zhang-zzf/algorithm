@@ -1,5 +1,6 @@
 public class InsertSort {
 
+
   /**
    * 非降序排序
    */

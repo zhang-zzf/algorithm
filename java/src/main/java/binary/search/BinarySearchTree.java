@@ -1,7 +1,6 @@
 package binary.search;
 
 import java.util.List;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -171,9 +170,9 @@ public interface BinarySearchTree<T extends Comparable<T>> {
             n.setData(data);
             n.setParent(parent);
             return n;
-
         }
 
+        @Override
         public String toString() {
             return data.toString();
         }

@@ -1,12 +1,14 @@
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+import base.Algorithm;
 import graph.bfs.BreadthFirstSearchAlgorithm;
 import graph.dfs.DepthFirstSearchAlgorithm;
 import graph.dijkstra.feng.DijkstraAlgorithm;
 import graph.dijkstra.feng.Graph;
 import graph.dijkstra.feng.Vertex;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,6 +36,20 @@ public class AlgorithmTest {
     @Before
     public void beforClass() {
 
+    }
+
+    @Test
+    public void testRemoveZero() {
+        assertEquals("1", BigDecimal.valueOf(1).toString());
+        assertEquals("0", Algorithm.removeZeroForDecimal(BigDecimal.ZERO));
+        assertEquals("0", Algorithm.removeZeroForDecimal(new BigDecimal(0.00)));
+        assertEquals("1", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(1)));
+        assertEquals("1", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(1.00)));
+        assertEquals("10", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(10)));
+        assertEquals("10", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(10.000)));
+        assertEquals("10.1", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(10.100)));
+        assertEquals("10.01", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(10.01)));
+        assertEquals("10.01", Algorithm.removeZeroForDecimal(BigDecimal.valueOf(10.0100)));
     }
 
     @Test
@@ -76,6 +92,25 @@ public class AlgorithmTest {
 
         arraySample.add(1);
         assertTrue(Algorithm.arrayDeleteDuplicate(arraySample).equals(array));
+
+    }
+
+    @Test
+    public void testDeleteDuplicateSortedArray2() {
+        List<Integer> integers = Algorithm.arrayDeleteDuplicate2(Arrays.asList(1, 1, 1, 2, 2, 3));
+        assertEquals(5, integers.size());
+        integers = Algorithm.arrayDeleteDuplicate2(Arrays.asList(0, 0, 1, 1, 1, 1, 2, 3, 3));
+        assertEquals(7, integers.size());
+
+    }
+
+    @Test
+    public void testFindArrayMaxSubArray() {
+        assertEquals(1, Algorithm.findArrayMaxSubArray(new int[]{1}));
+        assertEquals(3, Algorithm.findArrayMaxSubArray(new int[]{1, 2}));
+        assertEquals(1, Algorithm.findArrayMaxSubArray(new int[]{-5, 1, -2}));
+        assertEquals(11, Algorithm.findArrayMaxSubArray(new int[]{-5, 8, -2, 5}));
+        assertEquals(14, Algorithm.findArrayMaxSubArray(new int[]{-5, 8, -2, -7, 2, 3, 5, -2, 6}));
 
     }
 

@@ -1,9 +1,60 @@
+package base;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Algorithm {
+
+    /**
+     * 移除小数点后面的0
+     *
+     * @param decimal
+     * @return
+     */
+    public static String removeZeroForDecimal(BigDecimal decimal) {
+        String s = decimal.toString();
+        int j = s.length(), k = j;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int c = s.charAt(i);
+            if ((c == '0' || c == '.') && k == i + 1) {
+                k -= 1;
+            }
+            if (c == '.') {
+                j = i;
+                break;
+            }
+        }
+        if (j != s.length()) { // 存在'.'
+            return s.substring(0, k); // 去除小数点后面的'0'
+        }
+        return s;
+    }
+
+    /**
+     * 数组最大连续子数组, 必须有正数-
+     */
+    public static final int findArrayMaxSubArray(int[] array) {
+        Maximum maximum = new Maximum(array[0], 0, 0);
+        int sum = 0;
+        int max = array[0];
+        int start = 0, end = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+            if (sum <= 0) {
+                sum = 0;
+                start = i + 1;
+            } else if (sum > max) {
+                max = sum;
+                end = i;
+                maximum.sum = max;
+                maximum.start = start;
+                maximum.end = end;
+            }
+        }
+        return maximum.sum;
+    }
 
     public static final List<Integer> arrayDeleteDuplicate(List<Integer> array) {
         if (array.size() == 0) {
@@ -16,6 +67,27 @@ public class Algorithm {
             }
         }
         return array.subList(0, i + 1);
+    }
+
+    /**
+     * 删除重复的元素，重复的元素最多可保留2个
+     */
+    public static final List<Integer> arrayDeleteDuplicate2(List<Integer> array) {
+        if (array.size() < 2) {
+            return array;
+        }
+        int i = 1;
+        int counter = 1;
+        for (int j = 1; j < array.size(); j++) {
+            if (!array.get(j).equals(array.get(i - 1))) {
+                array.set(i++, array.get(j));
+                counter = 1;
+            } else if (counter < 2) {
+                array.set(i++, array.get(j));
+                counter += 1;
+            }
+        }
+        return array.subList(0, i);
     }
 
     public static int heapFindKMax(int[] array, int k) {
@@ -426,5 +498,19 @@ public class Algorithm {
         list[index2] = tmp;
     }
 
+    public static class Maximum {
+
+        int sum;
+        int start;
+        int end;
+
+        public Maximum(int sum, int start, int end) {
+            this.sum = sum;
+            this.start = start;
+            this.end = end;
+        }
+    }
 
 }
+
+
