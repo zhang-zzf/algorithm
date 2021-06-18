@@ -18,6 +18,30 @@ public class Median {
         return findRecurse(array, 0, array.length - 1, k);
     }
 
+    /**
+     * 找出数组中第 k 小的数
+     *
+     * @param array 数组
+     * @param k     序号
+     * @return 第 k 小的数
+     */
+    public int findMedianIterative(int[] array, int k) {
+        int left = 0, right = array.length - 1;
+        while (true) {
+            final int pivot = partition(array, left, right);
+            if (pivot == k) {
+                break;
+            } else if (pivot < k) {
+                left = pivot + 1;
+            } else {
+                right = pivot - 1;
+            }
+        }
+        // partition 在原址排序
+        return array[k];
+    }
+
+
     private int findRecurse(int[] array, int left, int right, int k) {
         int pivotIndex = partition(array, left, right);
         if (pivotIndex == k) {
