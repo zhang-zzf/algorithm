@@ -489,7 +489,7 @@ public class Algorithm {
         return left;
     }
 
-    private static void _swap(int[] list, int index1, int index2) {
+    public static void _swap(int[] list, int index1, int index2) {
         if (index1 == index2) {
             return;
         }
